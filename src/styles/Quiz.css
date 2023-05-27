@@ -1,0 +1,9 @@
+.question {
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+.question__answer {
+  width: 200px;
+  height: 50px;
+}
