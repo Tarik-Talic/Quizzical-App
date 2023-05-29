@@ -17,7 +17,8 @@ function App() {
     fetch(url)
       .then((res) => res.json())
       .then((data) => setData(formatQuizData(data.results)));
-  }, [start]);
+    console.log("i fired once");
+  }, []);
 
   //!Formating the Data
 

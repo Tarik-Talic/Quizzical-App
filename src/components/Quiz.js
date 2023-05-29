@@ -15,5 +15,10 @@ export default function Quiz(props) {
     </div>
   ));
 
-  return <div className="question">{displayQuestions}</div>;
+  return (
+    <div className="questionsContainer">
+      <h1>QUZZICAL</h1>
+      {displayQuestions}
+    </div>
+  );
 }

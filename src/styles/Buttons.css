@@ -1,0 +1,8 @@
+.answers {
+  cursor: pointer;
+  text-align: center;
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  margin-right: 1rem;
+}
