@@ -3,12 +3,12 @@ import Quiz from "./components/Quiz";
 import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import "./App.css";
-import shuffleAnswers from "./utils";
 import background from "./assets/cool-background.png";
 
 function App() {
   const [start, setStart] = useState(false);
   const [data, setData] = useState([]);
+
   const url = "https://opentdb.com/api.php?amount=5&category=9&difficulty=medium";
 
   //!Geting the data
@@ -17,8 +17,7 @@ function App() {
     fetch(url)
       .then((res) => res.json())
       .then((data) => setData(formatQuizData(data.results)));
-    console.log("i fired once");
-  }, []);
+  }, [start]);
 
   //!Formating the Data
 
@@ -33,18 +32,71 @@ function App() {
     });
     return formattedData;
   }
-
+  function shuffleAnswers(possibleAnswers) {
+    let randomArr = [...possibleAnswers].sort(() => Math.random() - 0.5);
+    let arrayOfAnswers = randomArr.map((item) => {
+      return {
+        value: item,
+        id: nanoid(5),
+        isHeld: false,
+      };
+    });
+    return arrayOfAnswers;
+  }
   //!Starting the Quiz
 
   function startQuiz() {
-    setStart(true);
+    setStart((prevState) => !prevState);
+  }
+
+  //!Marking The Answers
+
+  function holdingAnswers(answerId, questionId) {
+    setData((prevQuestions) =>
+      prevQuestions.map((item) => {
+        if (item.id === questionId) {
+          let newAnswersArr = item.answers.map((answer) => {
+            if (answer.id === answerId) {
+              return {
+                ...answer,
+                isHeld: true,
+              };
+            } else {
+              return {
+                ...answer,
+                isHeld: false,
+              };
+            }
+          });
+          return {
+            ...item,
+            answers: newAnswersArr,
+          };
+        } else {
+          return item;
+        }
+      })
+    );
   }
 
   return (
-    <div className="App" style={{ backgroundImage: `url(${background})` }}>
+    <div
+      className="App"
+      style={{
+        backgroundImage: `url(${background})`,
+        backgroundRepeat: "repeat",
+      }}
+    >
       {!start && <FrontPage onClick={startQuiz} />}
 
-      {start && <Quiz key={nanoid()} quizData={data} />}
+      {start && (
+        <Quiz
+          key={nanoid()}
+          id={nanoid()}
+          quizData={data}
+          holdingAnswers={holdingAnswers}
+        />
+      )}
     </div>
   );
 }

@@ -3,14 +3,17 @@ import Questions from "../components/Questions";
 import { nanoid } from "nanoid";
 
 export default function Quiz(props) {
+  console.log(props);
   const displayQuestions = props.quizData.map((item) => (
     <div className="quiz__questions">
       <Questions
-        key={item.id}
+        key={nanoid()}
         quizData={props.quizData}
         question={item.question}
-        correct_answer={item.correctAnswer}
+        questionId={item.id}
+        correctAnswer={item.correctAnswer}
         answers={item.answers}
+        holdingAnswers={props.holdingAnswers}
       />
     </div>
   ));

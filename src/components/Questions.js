@@ -1,13 +1,22 @@
 import Buttons from "../components/Buttons";
-import { nanoid } from "nanoid";
 import "../styles/Questions.css";
+const he = require("he");
 export default function Questions(props) {
   let listOfAnswers = props.answers.map((item) => (
-    <Buttons key={nanoid()} quizData={props.quizData} item={item} value={item.value} />
+    <Buttons
+      key={item.id}
+      isHeld={item.isHeld}
+      quizData={props.quizData}
+      answers={props.answers}
+      value={item.value}
+      item={item}
+      questionId={props.questionId}
+      holdingAnswers={props.holdingAnswers}
+    />
   ));
   return (
     <div>
-      <h2 className="questionsContainer__questions">{props.question}</h2>
+      <h2 className="questionsContainer__questions">{he.decode(props.question)}</h2>
       {listOfAnswers}
     </div>
   );
