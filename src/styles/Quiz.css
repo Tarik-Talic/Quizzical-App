@@ -10,3 +10,16 @@
 h1 {
   font-size: 3rem;
 }
+.checkAnswerBtn {
+  align-self: center;
+  margin-top: 2rem;
+  height: 3.5rem;
+  width: 12rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  background-color: #69b4ff;
+  cursor: pointer;
+}

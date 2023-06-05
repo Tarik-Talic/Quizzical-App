@@ -3,7 +3,6 @@ import Questions from "../components/Questions";
 import { nanoid } from "nanoid";
 
 export default function Quiz(props) {
-  console.log(props);
   const displayQuestions = props.quizData.map((item) => (
     <div className="quiz__questions">
       <Questions
@@ -17,11 +16,13 @@ export default function Quiz(props) {
       />
     </div>
   ));
-
   return (
     <div className="questionsContainer">
       <h1>QUZZICAL</h1>
       {displayQuestions}
+      <button className="checkAnswerBtn" onClick={props.checkingCorrectAnswers}>
+        Check answers
+      </button>
     </div>
   );
 }

@@ -43,6 +43,7 @@ function App() {
     });
     return arrayOfAnswers;
   }
+  console.log(data);
   //!Starting the Quiz
 
   function startQuiz() {
@@ -78,6 +79,40 @@ function App() {
       })
     );
   }
+  // !Checking the answers
+  function checkingCorrectAnswers() {
+    setData((prevState) =>
+      prevState.map((item) => {
+        let markedAnswers = item.answers.map((answer) => {
+          if (answer.isHeld && item.correctAnswer === answer.value) {
+            return {
+              ...answer,
+              isCorrect: true,
+            };
+          } else if (!answer.isHeld && item.correctAnswer === answer.value) {
+            return {
+              ...answer,
+              isCorrect: true,
+            };
+          } else if (answer.isHeld && item.correctAnswer !== answer.value) {
+            return {
+              ...answer,
+              isWrong: true,
+            };
+          } else {
+            return {
+              ...answer,
+              faded: true,
+            };
+          }
+        });
+        return {
+          ...item,
+          answers: markedAnswers,
+        };
+      })
+    );
+  }
 
   return (
     <div
@@ -95,6 +130,7 @@ function App() {
           id={nanoid()}
           quizData={data}
           holdingAnswers={holdingAnswers}
+          checkingCorrectAnswers={checkingCorrectAnswers}
         />
       )}
     </div>
