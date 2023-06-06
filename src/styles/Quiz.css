@@ -1,11 +1,13 @@
 .questionsContainer {
-  color: white;
+  color: #e1ffff;
   text-align: center;
   display: flex;
   flex-direction: column;
   margin: 0 50px;
   gap: 1rem;
   cursor: default;
+  /* backdrop-filter: blur(2px); */
+  background-color: rgba(14, 34, 57, 0.3);
 }
 h1 {
   font-size: 3rem;
@@ -13,6 +15,7 @@ h1 {
 .checkAnswerBtn {
   align-self: center;
   margin-top: 2rem;
+  margin-bottom: 2rem;
   height: 3.5rem;
   width: 12rem;
   font-size: 1rem;
@@ -22,4 +25,8 @@ h1 {
   color: white;
   background-color: #69b4ff;
   cursor: pointer;
+}
+.checkAnswerBtn:hover {
+  background-color: #ffffff;
+  color: #006fff;
 }

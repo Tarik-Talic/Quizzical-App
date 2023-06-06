@@ -12,17 +12,18 @@ export default function Buttons(props) {
       return styles;
     } else if (item.isWrong) {
       styles = {
-        backgroundColor: "red",
+        backgroundColor: "#dc442e",
+        opacity: "0.5",
       };
       return styles;
     } else if (item.faded) {
       styles = {
-        backgroundColor: "purple",
+        opacity: "0.5",
       };
       return styles;
     } else {
       styles = {
-        backgroundColor: item.isHeld ? "blue" : "white",
+        backgroundColor: item.isHeld ? "#69b4ff" : "#9e9e9e",
       };
       return styles;
     }

@@ -3,7 +3,7 @@ import Quiz from "./components/Quiz";
 import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import "./App.css";
-import background from "./assets/cool-background.png";
+import background from "./assets/IconGrid2.png";
 
 function App() {
   const [start, setStart] = useState(false);
@@ -80,6 +80,8 @@ function App() {
     );
   }
   // !Checking the answers
+
+  // switch block
   function checkingCorrectAnswers() {
     setData((prevState) =>
       prevState.map((item) => {
@@ -119,7 +121,6 @@ function App() {
       className="App"
       style={{
         backgroundImage: `url(${background})`,
-        backgroundRepeat: "repeat",
       }}
     >
       {!start && <FrontPage onClick={startQuiz} />}
