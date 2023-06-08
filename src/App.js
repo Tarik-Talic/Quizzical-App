@@ -3,10 +3,13 @@ import Quiz from "./components/Quiz";
 import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import "./App.css";
+import ClipLoader from "react-spinners/GridLoader";
 import background from "./assets/IconGrid2.png";
 
 function App() {
   const [start, setStart] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const [data, setData] = useState([]);
   const [checkedAnswers, setCheckedAnswers] = useState(false);
   const [score, setScore] = useState(0);
@@ -16,9 +19,13 @@ function App() {
   //!Geting the data
 
   useEffect(() => {
+    setLoading(true);
     fetch(url)
       .then((res) => res.json())
       .then((data) => setData(formatQuizData(data.results)));
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   }, [start]);
 
   //!Formating the Data
@@ -132,19 +139,31 @@ function App() {
         backgroundImage: `url(${background})`,
       }}
     >
-      {!start && <FrontPage onClick={startQuiz} />}
-
-      {start && (
-        <Quiz
-          key={nanoid()}
-          id={nanoid()}
-          quizData={data}
-          holdingAnswers={holdingAnswers}
-          checkingCorrectAnswers={checkingCorrectAnswers}
-          checkedAnswers={checkedAnswers}
-          score={score}
-          playAgain={resetQuiz}
+      {loading ? (
+        <ClipLoader
+          color={"white"}
+          loading={loading}
+          size={100}
+          aria-label="Loading Spinner"
+          data-testid="loader"
         />
+      ) : (
+        <>
+          {!start && <FrontPage onClick={startQuiz} />}
+
+          {start && (
+            <Quiz
+              key={nanoid()}
+              id={nanoid()}
+              quizData={data}
+              holdingAnswers={holdingAnswers}
+              checkingCorrectAnswers={checkingCorrectAnswers}
+              checkedAnswers={checkedAnswers}
+              score={score}
+              playAgain={resetQuiz}
+            />
+          )}
+        </>
       )}
     </div>
   );
