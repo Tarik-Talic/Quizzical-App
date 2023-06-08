@@ -3,6 +3,7 @@ import Questions from "../components/Questions";
 import { nanoid } from "nanoid";
 
 export default function Quiz(props) {
+  console.log(props);
   const displayQuestions = props.quizData.map((item) => (
     <div className="quiz__questions">
       <Questions
@@ -18,11 +19,20 @@ export default function Quiz(props) {
   ));
   return (
     <div className="questionsContainer">
-      <h1>QUZZICAL</h1>
+      <h1>QUIZZICAL</h1>
       {displayQuestions}
-      <button className="checkAnswerBtn" onClick={props.checkingCorrectAnswers}>
-        Check answers
-      </button>
+      {props.checkedAnswers ? (
+        <>
+          <p className="scoreDisplay">You scored {props.score}/5 correct answers.</p>
+          <button className="checkAnswer btn" onClick={props.playAgain}>
+            Play Again
+          </button>
+        </>
+      ) : (
+        <button className="resetQuiz btn" onClick={props.checkingCorrectAnswers}>
+          Check answers
+        </button>
+      )}
     </div>
   );
 }

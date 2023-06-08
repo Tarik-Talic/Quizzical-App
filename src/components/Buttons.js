@@ -1,8 +1,6 @@
 import "../styles/Buttons.css";
 const he = require("he");
 export default function Buttons(props) {
-  console.log(props);
-
   function displayAnswers(item) {
     let styles = {};
     if (item.isCorrect) {
@@ -16,7 +14,7 @@ export default function Buttons(props) {
         opacity: "0.5",
       };
       return styles;
-    } else if (item.faded) {
+    } else if (item.IsFaded) {
       styles = {
         opacity: "0.5",
       };

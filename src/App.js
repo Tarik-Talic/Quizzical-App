@@ -8,6 +8,8 @@ import background from "./assets/IconGrid2.png";
 function App() {
   const [start, setStart] = useState(false);
   const [data, setData] = useState([]);
+  const [checkedAnswers, setCheckedAnswers] = useState(false);
+  const [score, setScore] = useState(0);
 
   const url = "https://opentdb.com/api.php?amount=5&category=9&difficulty=medium";
 
@@ -32,6 +34,7 @@ function App() {
     });
     return formattedData;
   }
+
   function shuffleAnswers(possibleAnswers) {
     let randomArr = [...possibleAnswers].sort(() => Math.random() - 0.5);
     let arrayOfAnswers = randomArr.map((item) => {
@@ -43,11 +46,15 @@ function App() {
     });
     return arrayOfAnswers;
   }
-  console.log(data);
   //!Starting the Quiz
 
   function startQuiz() {
     setStart((prevState) => !prevState);
+  }
+  function resetQuiz() {
+    setStart((prevState) => !prevState);
+    setCheckedAnswers((prevState) => !prevState);
+    setScore(0);
   }
 
   //!Marking The Answers
@@ -87,6 +94,7 @@ function App() {
       prevState.map((item) => {
         let markedAnswers = item.answers.map((answer) => {
           if (answer.isHeld && item.correctAnswer === answer.value) {
+            setScore((prevState) => prevState + 1);
             return {
               ...answer,
               isCorrect: true,
@@ -104,7 +112,7 @@ function App() {
           } else {
             return {
               ...answer,
-              faded: true,
+              IsFaded: true,
             };
           }
         });
@@ -114,6 +122,7 @@ function App() {
         };
       })
     );
+    setCheckedAnswers(true);
   }
 
   return (
@@ -132,6 +141,9 @@ function App() {
           quizData={data}
           holdingAnswers={holdingAnswers}
           checkingCorrectAnswers={checkingCorrectAnswers}
+          checkedAnswers={checkedAnswers}
+          score={score}
+          playAgain={resetQuiz}
         />
       )}
     </div>

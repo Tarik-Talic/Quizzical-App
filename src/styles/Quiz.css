@@ -12,7 +12,7 @@
 h1 {
   font-size: 3rem;
 }
-.checkAnswerBtn {
+.btn {
   align-self: center;
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -26,7 +26,10 @@ h1 {
   background-color: #69b4ff;
   cursor: pointer;
 }
-.checkAnswerBtn:hover {
+.btn:hover {
   background-color: #ffffff;
   color: #006fff;
+}
+.scoreDisplay {
+  font-size: 1.5rem;
 }
