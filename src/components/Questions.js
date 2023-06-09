@@ -15,9 +15,9 @@ export default function Questions(props) {
     />
   ));
   return (
-    <div>
+    <>
       <h2 className="questionsContainer__questions">{he.decode(props.question)}</h2>
       {listOfAnswers}
-    </div>
+    </>
   );
 }

@@ -3,7 +3,7 @@ import Quiz from "./components/Quiz";
 import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import "./App.css";
-import ClipLoader from "react-spinners/GridLoader";
+import ClipLoader from "react-spinners/RingLoader";
 import background from "./assets/IconGrid2.png";
 
 function App() {
