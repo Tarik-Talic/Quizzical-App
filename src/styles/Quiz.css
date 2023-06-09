@@ -13,6 +13,7 @@
 h1 {
   font-size: 3rem;
 }
+
 .btn {
   align-self: center;
   margin-top: 1.5rem;
@@ -26,10 +27,12 @@ h1 {
   color: white;
   background-color: #69b4ff;
   cursor: pointer;
+  transition: 0.5s ease-in;
 }
 .btn:hover {
   background-color: #ffffff;
   color: #006fff;
+  animation: bounce 1s;
 }
 .scoreDisplay {
   font-size: 1.5rem;

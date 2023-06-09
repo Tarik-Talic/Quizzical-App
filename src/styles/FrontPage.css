@@ -31,8 +31,16 @@
   color: white;
   background-color: #69b4ff;
   cursor: pointer;
+  transition: 0.5s ease-in;
 }
 .front-page__start-btn:hover {
-  background-color: #ffffff;
-  color: #006fff;
+  background: linear-gradient(
+    50deg,
+    rgba(248, 168, 52, 1) 16%,
+    rgba(253, 210, 131, 1) 37%,
+    rgba(1, 247, 244, 1) 60%,
+    rgba(119, 1, 173, 1) 86%
+  );
+  animation: bounce 1s;
+  transition: 0.9s ease-in;
 }
