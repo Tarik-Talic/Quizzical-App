@@ -153,7 +153,7 @@ function App() {
 
           {start && (
             <Quiz
-              key={nanoid()}
+              key="1"
               id={nanoid()}
               quizData={data}
               holdingAnswers={holdingAnswers}

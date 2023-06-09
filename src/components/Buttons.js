@@ -32,7 +32,6 @@ export default function Buttons(props) {
       className="answers"
       style={displayAnswers(props.item)}
       id={props.answerId}
-      isHeld={props.answers.isHeld}
       onClick={(e) => props.holdingAnswers(props.item.id, props.questionId)}
     >
       {he.decode(props.value)}

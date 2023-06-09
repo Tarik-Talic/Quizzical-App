@@ -3,11 +3,10 @@ import Questions from "../components/Questions";
 import { nanoid } from "nanoid";
 
 export default function Quiz(props) {
-  console.log(props);
   const displayQuestions = props.quizData.map((item) => (
-    <div className="quiz__questions">
+    <div className="quiz__questions" key={nanoid()}>
       <Questions
-        key={nanoid()}
+        key={item.id}
         quizData={props.quizData}
         question={item.question}
         questionId={item.id}
